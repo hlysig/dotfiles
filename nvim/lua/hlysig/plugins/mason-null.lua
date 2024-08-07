@@ -15,6 +15,7 @@ return {
 				"shellcheck",
 				"pylint",
 				"black",
+				"shfmt",
 			},
 			automatic_installation = false,
 		})

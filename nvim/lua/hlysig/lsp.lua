@@ -12,6 +12,7 @@ local function setup_null()
 		null_ls.builtins.diagnostics.terraform_validate,
 		null_ls.builtins.diagnostics.pylint,
 		null_ls.builtins.formatting.black,
+		null_ls.builtins.formatting.shfmt,
 	}
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 	null_ls.setup({
@@ -57,12 +58,19 @@ local function setup_lua()
 	})
 end
 
+local function setup_sh()
+	lspconfig.bashls.setup({
+		capabilities = capabilities,
+	})
+end
+
 local function setup()
 	setup_ts()
 	setup_lua()
 	setup_null()
 	setup_terraformls()
 	setup_python()
+	setup_sh()
 end
 
 setup()

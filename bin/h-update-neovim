@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euxo pipefail
 
 function clone_neovim() {
   if [ ! -d "$HOME/repos/neovim" ]; then

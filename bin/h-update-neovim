@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+function clone_neovim() {
+  if [ ! -d "$HOME/repos/neovim" ]; then
+    mkdir -p "$HOME/repos"
+    pushd "$HOME/repos" || exit
+    git clone https://github.com/neovim/neovim.git
+    popd || exit
+  fi
+}
+
+function update_neovim() {
+  mkdir -p "$HOME/.apps"
+  rm -rf "$HOME/.apps/neovim"
+  cd "$HOME/repos/neovim" || exit
+  git clean -fxd
+  git checkout stable
+  git pull origin stable
+  make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.apps/neovim"
+  make install
+}
+
+function main() {
+  clone_neovim
+  update_neovim
+  echo "Remember to add \"\$HOME/.apps/neovim/bin\" to \$PATH"
+}
+
+main "$@"

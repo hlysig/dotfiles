@@ -1,0 +1,17 @@
+[user]
+name = Hlynur Sigurthorsson
+email = hlysig@0x.is
+signingkey = D793AD6E6D33913B3CDE42EA3938E7115479F289
+
+[commit]
+verbose = true
+gpgsign = false
+
+[core]
+editor = nvim
+
+[init]
+defaultBranch = main
+
+[status]
+short = true

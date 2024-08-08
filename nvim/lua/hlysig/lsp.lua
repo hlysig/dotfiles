@@ -64,13 +64,20 @@ local function setup_sh()
 	})
 end
 
+local function setup_markdown()
+	lspconfig.marksman.setup({
+		capabilities = capabilities,
+	})
+end
+
 local function setup()
 	setup_ts()
 	setup_lua()
-	setup_null()
 	setup_terraformls()
 	setup_python()
 	setup_sh()
+	setup_markdown()
+	setup_null()
 end
 
 setup()

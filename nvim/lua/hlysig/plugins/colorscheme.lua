@@ -12,5 +12,4 @@ return {
 		})
 		require("onedark").load()
 	end,
-	init = function() end,
 }

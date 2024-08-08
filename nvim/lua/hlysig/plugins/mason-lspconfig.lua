@@ -5,6 +5,7 @@ local ensure_installed = {
 	"pyright",
 	"marksman",
 	"bashls",
+	"marksman",
 }
 
 local config = {

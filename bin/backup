@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BACKUP_HOSTNAME=$(hostname)
+BACKUP_SERVER_ROOT_DIR="/home/hlysig/backups/$BACKUP_HOSTNAME"
+BACKUP_SERVERS="k3.0x.is"
+
+function main() {
+  BACKUP_MAP=(
+    "/home/hlysig/Documents;$BACKUP_SERVER_ROOT_DIR/"
+    "/Users/hlysig/Documents;$BACKUP_SERVER_ROOT_DIR/"
+  )
+
+  for backup_map in "${BACKUP_MAP[@]}"; do
+    echo "Processing \"$backup_map\""
+    IFS=';' read -ra PARTS <<<"$backup_map"
+    LEFT=${PARTS[0]}
+    RIGHT=${PARTS[1]}
+
+    if test -d "$LEFT"; then
+      echo "Directory exists."
+      ssh -i "$HOME/.ssh/id_rsa" "hlysig@$BACKUP_SERVERS" mkdir -p "$RIGHT"
+      rsync -r -a -v --exclude='.git' --exclude='.DS_Store' --exclude='node_modules' "$LEFT" "hlysig@$BACKUP_SERVERS:$RIGHT"
+    else
+      echo "Directory \"$LEFT\" does not exist."
+    fi
+  done
+}
+
+main "$@"

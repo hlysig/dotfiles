@@ -47,3 +47,8 @@ vim.opt.splitright = true
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.spell = true
 vim.diagnostic.config({ virtual_text = false })
+
+-- Configure terminal mode
+vim.api.nvim_command("autocmd TermOpen * startinsert")
+vim.api.nvim_command("autocmd TermOpen * setlocal nonumber")
+vim.api.nvim_command("autocmd TermEnter * setlocal signcolumn=no")

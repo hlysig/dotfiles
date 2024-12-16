@@ -124,6 +124,12 @@ vim.keymap.set("n", "<leader>wth", ":split|:terminal<cr>", {
   desc = "horizontal",
 })
 
+vim.keymap.set("n", "<leader>tt", ":Telescope git_files<cr>", {
+  noremap = true,
+  desc = "git files",
+  silent = true,
+})
+
 vim.keymap.set("n", "<leader>tgf", ":Telescope git_files<cr>", {
   noremap = true,
   desc = "files",

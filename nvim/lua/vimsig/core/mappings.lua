@@ -39,6 +39,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
       noremap = true,
     })
 
+    vim.keymap.set("n", "<localleader>ci", vim.lsp.buf.implementation, {
+      buffer = ev.buf,
+      desc = "implementation",
+      noremap = true,
+    })
+
     vim.keymap.set("n", "<localleader>co", "<cmd>Outline<CR>", {
       buffer = ev.buf,
       desc = "outline",
@@ -60,12 +66,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       desc = "format",
     })
   end,
-})
-
-vim.keymap.set("n", "<leader>fw", ":w<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "write",
 })
 
 vim.keymap.set("n", "<leader>fo", function()
@@ -127,6 +127,18 @@ vim.keymap.set("n", "<leader>wth", ":split|:terminal<cr>", {
 vim.keymap.set("n", "<leader>tt", ":Telescope git_files<cr>", {
   noremap = true,
   desc = "git files",
+  silent = true,
+})
+
+vim.keymap.set("n", "<leader>tb", ":Telescope buffers<cr>", {
+  noremap = true,
+  desc = "buffers",
+  silent = true,
+})
+
+vim.keymap.set("n", "<leader>tl", ":Telescope live_grep<cr>", {
+  noremap = true,
+  desc = "grep",
   silent = true,
 })
 
@@ -255,3 +267,13 @@ end, { desc = "hover.nvim (previous source)", noremap = true })
 vim.keymap.set("n", "<C-n>", function()
   hover.hover_switch("next")
 end, { desc = "hover.nvim (next source)", noremap = true })
+
+vim.keymap.set('n', '<F2>', vim.diagnostic.goto_next, {
+  noremap = true,
+  desc = "next diagnostic error"
+})
+
+vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)', {
+  noremap = true,
+  desc = "accept word from copilot"
+})

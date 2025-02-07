@@ -45,7 +45,7 @@ vim.opt.wrap = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.spell = true
+vim.opt.spell = false
 vim.diagnostic.config({ virtual_text = false })
 
 -- Configure terminal mode
